@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="quantitymeasurement.QuantityTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-09-21T00:20:29" hostname="HP-PAVILION" time="0.007">
+  <properties/>
+  <testcase name="givenZeroFeetAndZeroFeet_WhenEquals_ThenShouldBeEqual" classname="quantitymeasurement.QuantityTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
