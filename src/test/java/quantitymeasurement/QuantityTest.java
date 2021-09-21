@@ -1,7 +1,9 @@
 package quantitymeasurement;
 
 import org.junit.Assert;
-import org.junit.Test;
+//import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class QuantityTest {
 
@@ -62,10 +64,10 @@ public class QuantityTest {
     }
 
     @Test
-    public void givenZeroInchAndNull_ThenShouldBeEqual() {
+    public void givenZeroInchAndNull_ThenShouldBeNotEqual() {
         Inch inch1 = new Inch(0.0);
         Feet inch2 = null;
-        Assert.assertNotEquals(inch1, inch2);
+        Assert.assertNotEquals(inch1, null);
     }
 
     @Test
@@ -80,5 +82,28 @@ public class QuantityTest {
         Inch inch1 = new Inch(0.0);
         String inchString = "String Object";
         Assert.assertNotEquals(inch1, inchString);
+    }
+
+    // Yard
+
+    @Test
+    public void givenZeroYardAndZeroYard_ThenShouldBeEqual() {
+        Yard yard1 = new Yard(0.0);
+        Yard yard2 = new Yard(0.0);
+        Assertions.assertEquals(yard1, yard2);
+    }
+
+    @Test
+    public void givenZeroYardAndOneYard_ThenShouldNotBeEqual() {
+        Yard yard1 = new Yard(0.0);
+        Yard yard2 = new Yard(1.0);
+        Assertions.assertNotEquals(yard1, yard2);
+    }
+
+    @Test
+    void givenZeroYardAndNull_ThenShouldBeNotEqual() {
+        Yard yard1 = new Yard(0);
+        Yard yard2 = null;
+        Assertions.assertNotEquals(yard1, null);
     }
 }
