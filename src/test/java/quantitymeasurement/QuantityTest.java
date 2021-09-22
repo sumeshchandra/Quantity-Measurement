@@ -101,9 +101,30 @@ public class QuantityTest {
     }
 
     @Test
-    void givenZeroYardAndNull_ThenShouldBeNotEqual() {
+    public void givenZeroYardAndNull_ThenShouldBeNotEqual() {
         Yard yard1 = new Yard(0);
         Yard yard2 = null;
         Assertions.assertNotEquals(yard1, null);
     }
+
+    @Test
+    public void givenThreeFeetEqualsOneYard_ThenShouldBeEqual() {
+        Yard yard = new Yard(1.0);
+        double result = yard.conversionYardtoFeet();
+        Assertions.assertEquals(3, result);
+    }
+
+    @Test
+    public void givenTwoFeetEqualsTwoYard_ThenShouldNotBeEqual() {
+        Yard yard = new Yard(1);
+        double result = yard.conversionYardtoFeet();
+        Assertions.assertNotEquals(false, result);
+    }
+
 }
+
+
+
+
+
+
