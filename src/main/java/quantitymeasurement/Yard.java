@@ -8,6 +8,14 @@ public class Yard {
         this.value = value;
     }
 
+    public double conversionYardtoFeet() {
+        return value * 3;
+    }
+
+    public double convertYardTOInch() {
+        return value * 36;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -16,7 +24,4 @@ public class Yard {
         return Double.compare(yard.value, value) == 0;
     }
 
-    public double conversionYardtoFeet() {
-        return value * 3;
-    }
 }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class QuantityTest {
 
     @Test
-    public void givenZeroFeetAndZeroFeet_ThenShouldBeEqual() {
+    public void givenZeroFeetAndZeroFeet_ThenShouldBeEqual() {   //Feet
         Feet feet1 = new Feet(0.0);
         Feet feet2 = new Feet(0.0);
         Assert.assertEquals(feet1, feet2);
@@ -46,11 +46,31 @@ public class QuantityTest {
         Feet feet1 = new Feet(1);
         String feet = "String Feet";
         Assert.assertNotEquals(feet1, feet);
-
     }
 
     @Test
-    public void givenZeroInchAndZeroInch_ThenShouldBeEqual() {
+    public void givenOneFeetEqualsTOTwelveInch_ThenShouldBeEqual() {
+        Feet feet = new Feet(1);
+        double result = feet.convertFeetToInch();
+        Assertions.assertEquals(12, result);
+    }
+
+    @Test
+    public void givenThreeFeetEqualsToOneYard_ThenShouldBeEqual() {
+        Feet feet = new Feet(3);
+        double result = feet.convertFeetTOYard();
+        Assertions.assertEquals(1, result);
+    }
+
+    @Test
+    public void givenOneFeetAndOneYard_ThenShouldBeNotEqual() {
+        Feet feet = new Feet(1);
+        double result = feet.convertFeetTOYard();
+        Assertions.assertNotEquals(1, result);
+    }
+
+    @Test
+    public void givenZeroInchAndZeroInch_ThenShouldBeEqual() {            //Inch
         Inch inch1 = new Inch(0.0);
         Inch inch2 = new Inch(0.0);
         Assert.assertEquals(inch1, inch2);
@@ -84,10 +104,23 @@ public class QuantityTest {
         Assert.assertNotEquals(inch1, inchString);
     }
 
-    // Yard
+    @Test
+    public void givenOneInchAndOneYard_ThenShouldBeNotEqual() {
+        Inch inch = new Inch(1);
+        double result = inch.convertInchTOYard();
+        Assertions.assertNotEquals(0.277, result);
+    }
 
     @Test
-    public void givenZeroYardAndZeroYard_ThenShouldBeEqual() {
+    public void givenThirtySixInchAndOneYard_ThenShouldBeEqual() {
+        Inch inch = new Inch(36);
+        double result = inch.convertInchTOYard();
+        Assertions.assertEquals(1, result);
+    }
+
+
+    @Test
+    public void givenZeroYardAndZeroYard_ThenShouldBeEqual() {      // Yard
         Yard yard1 = new Yard(0.0);
         Yard yard2 = new Yard(0.0);
         Assertions.assertEquals(yard1, yard2);
@@ -115,10 +148,17 @@ public class QuantityTest {
     }
 
     @Test
-    public void givenTwoFeetEqualsTwoYard_ThenShouldNotBeEqual() {
+    public void givenTwoFeetEqualsTwoYard_ThenShouldNotBeNotEqual() {
         Yard yard = new Yard(1);
         double result = yard.conversionYardtoFeet();
         Assertions.assertNotEquals(false, result);
+    }
+
+    @Test
+    public void givenOneYardAndThirtySixInch_ThenShouldBeEqual() {
+        Yard yard = new Yard(1);
+        double result = yard.convertYardTOInch();
+        Assertions.assertEquals(36, result);
     }
 
 }
