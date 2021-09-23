@@ -7,9 +7,7 @@ public class Inch {
         this.value = value;
     }
 
-    public double convertInchTOYard() {
-        return value / 36;
-    }
+
 
     @Override
     public boolean equals(Object o) {
