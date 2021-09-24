@@ -1,7 +1,6 @@
 package quantitymeasurement;
 
 import org.junit.Assert;
-//import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +18,6 @@ public class QuantityTest {
         Length feet1 = new Length(Length.Unit.FEET, 0.0);
         Length feet2 = new Length(Length.Unit.FEET, 1.0);
         Assert.assertNotEquals(feet1, feet2);
-    }
-
-    @Test
-    public void givenOneFeetAndOneFeet_ThenShouldBeEqual() {
-        Length feet1 = new Length(Length.Unit.FEET, 1.0);
-        Length feet2 = new Length(Length.Unit.FEET, 1.0);
-        Assert.assertTrue(feet1.compare(feet2));
     }
 
     @Test
@@ -49,24 +41,20 @@ public class QuantityTest {
     }
 
     @Test
-    public void givenOneFeetEqualsTOTwelveInch_ThenShouldBeEqual() {
+    public void givenOneFeetEqualsTOTwelveInch_WhenCompared_ThenShouldBeEqual() {
         Length feet = new Length(Length.Unit.FEET, 1);
-        double result = feet.convertFeetToInch();
-        Assertions.assertEquals(12, result);
+        Length inch = new Length(Length.Unit.INCH, 12);
+        boolean compareCheck = feet.compare(inch);
+        Assertions.assertTrue(compareCheck, "true");
     }
 
     @Test
-    public void givenThreeFeetEqualsToOneYard_ThenShouldBeEqual() {
+    public void givenThreeFeetAndOneYard_WhenCompared_ThenShouldBeEqual() {
         Length feet = new Length(Length.Unit.FEET, 3);
-        double result = feet.convertFeetTOYard();
-        Assertions.assertEquals(1, result);
-    }
+        Length yard = new Length(Length.Unit.YARD, 1);
+        boolean compareCheck = feet.compare(yard);
+        Assertions.assertTrue(compareCheck, "True");
 
-    @Test
-    public void givenOneFeetAndOneYard_ThenShouldBeNotEqual() {
-        Length feet = new Length(Length.Unit.FEET, 1);
-        double result = feet.convertFeetTOYard();
-        Assertions.assertNotEquals(1, result);
     }
 
     @Test
@@ -106,24 +94,36 @@ public class QuantityTest {
 
     @Test
     public void givenOneInchAndOneYard_ThenShouldBeNotEqual() {
-        Length inch = new Length(Length.Unit.INCH, 0.0);
-        double result = inch.convertInchTOYard();
-        Assertions.assertNotEquals(0.277, result);
+        Length inch = new Length(Length.Unit.INCH, 1.0);
+        Length yard = new Length(Length.Unit.YARD, 1.0);
+        boolean compareCheck = inch.compare(yard);
+        Assertions.assertFalse(compareCheck, "False");
     }
 
     @Test
-    public void givenOneFeetAndOneInch_ThenShouldBeNotEqual() {
+    public void givenOneFeetAndOneInch_WhenCompared_ThenShouldBeNotEqual() {
         Length feet1 = new Length(Length.Unit.FEET, 1.0);
         Length inch1 = new Length(Length.Unit.INCH, 1.0);
-        Assertions.assertNotEquals(feet1, inch1);
+        boolean compareCheck = feet1.compare(inch1);
+        Assertions.assertFalse(compareCheck, "False");
     }
 
-//    @Test
-//    public void givenThirtySixInchAndOneYard_ThenShouldBeEqual() {
-//        Length inch = new Length(Length.Unit.INCH, 0.0);
-//        double result = inch.convertInchTOYard();
-//        Assertions.assertEquals(1, result);
-//    }
+    @Test
+    public void givenOneFeetAndOneFeet_ThenShouldBeEqual() {
+        Length feet1 = new Length(Length.Unit.FEET, 1.0);
+        Length feet2 = new Length(Length.Unit.FEET, 1.0);
+        boolean compareCheck = feet1.compare(feet2);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
+
+    @Test
+    public void givenThirtySixInchAndOneYard_ThenShouldBeEqual() {
+        Length inch = new Length(Length.Unit.INCH, 36.0);
+        Length yard = new Length(Length.Unit.YARD, 1.0);
+        boolean compareCheck = yard.compare(inch);
+        Assertions.assertTrue(compareCheck, "True");
+    }
 
 
     @Test
@@ -148,24 +148,27 @@ public class QuantityTest {
     }
 
     @Test
-    public void givenThreeFeetEqualsOneYard_ThenShouldBeEqual() {
-        Yard yard = new Yard(1.0);
-        double result = yard.conversionYardtoFeet();
-        Assertions.assertEquals(3, result);
+    public void givenThreeFeetEqualsOneYard_WhenCompared_ThenShouldBeEqual() {
+        Length yard = new Length(Length.Unit.FEET, 3.0);
+        Length inch = new Length(Length.Unit.YARD, 1.0);
+        boolean compareCheck = yard.compare(inch);
+        Assertions.assertTrue(compareCheck, "true");
     }
 
     @Test
-    public void givenTwoFeetEqualsTwoYard_ThenShouldBeNotEqual() {
-        Yard yard = new Yard(1);
-        double result = yard.conversionYardtoFeet();
-        Assertions.assertNotEquals(false, result);
+    public void givenOneFeetAndOneYard_WhenCompared_ThenShouldBeNotEqual() {
+        Length yard = new Length(Length.Unit.FEET, 1.0);
+        Length inch = new Length(Length.Unit.YARD, 1.0);
+        boolean compareCheck = yard.compare(inch);
+        Assertions.assertFalse(compareCheck, "False");
     }
 
     @Test
-    public void givenOneYardAndThirtySixInch_ThenShouldBeEqual() {
-        Yard yard = new Yard(1);
-        double result = yard.convertYardTOInch();
-        Assertions.assertEquals(36, result);
+    public void givenOneYardAndThirtySixInch_WhenCompared_ThenShouldBeEqual() {
+        Length yard = new Length(Length.Unit.YARD, 1.0);
+        Length inch = new Length(Length.Unit.INCH, 36.0);
+        boolean compareCheck = yard.compare(inch);
+        Assertions.assertTrue(compareCheck, "true");
     }
 
 }
