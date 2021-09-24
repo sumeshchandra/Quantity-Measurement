@@ -313,6 +313,83 @@ public class QuantityTest {
         Volume actual = litre1.volumeSum(millilitre1);
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void givenZeroGramAndZeroGram_ThenShouldReturnEqual(){
+        Weight gram1 = new Weight(Weight.Unit.GRAM,0.0);
+        Weight gram2 = new Weight(Weight.Unit.GRAM,0.0);
+        Assertions.assertEquals(gram1, gram2);
+    }
+
+    @Test
+    public void givenZeroGramAndOneGram_ThenShouldNotReturnEqual(){
+        Weight gram1 = new Weight(Weight.Unit.GRAM,0.0);
+        Weight gram2 = new Weight(Weight.Unit.GRAM,1.0);
+        Assertions.assertNotEquals(gram1, gram2);
+    }
+
+    @Test
+    public void givenZeroGramAndNULL_ThenShouldNotReturnEqual(){
+        Weight gram1 = new Weight(Weight.Unit.GRAM,0.0);
+        Weight gram2 = null;
+        Assertions.assertNotEquals(gram1, null);
+    }
+
+    @Test
+    public void givenTypeZeroGramAndZeroGram_ThenShouldReturnEqual() {
+        Weight gram1 = new Weight(Weight.Unit.GRAM,0.0);
+        Weight gram2 = new Weight(Weight.Unit.GRAM,1.0);
+        Assertions.assertEquals(gram1.getClass(), gram2.getClass());
+    }
+
+    @Test
+    public void givenReferenceZeroGramAndZeroGram_ThenShouldNotReturnEqual() {
+        Weight gram1 = new Weight(Weight.Unit.GRAM,0.0);
+        Weight gram2 = new Weight(Weight.Unit.GRAM,1.0);
+        boolean compareCheck = gram1.compare(gram2);
+        Assertions.assertFalse(compareCheck, "False");
+    }
+
+    @Test
+    public void given1KilogramAnd1000Gram_WhenCompared_ShouldReturnEqualWeight() {
+        Weight kilogram = new Weight(Weight.Unit.KILOGRAM, 1.0);
+        Weight gram = new Weight(Weight.Unit.GRAM, 1000.0);
+        boolean compareCheck = kilogram.compare(gram);
+        Assertions.assertTrue(compareCheck,"True");
+    }
+
+    @Test
+    public void given1000GramAnd1Kg_WhenCompared_ThenShouldReturnEqual(){
+        Weight gram = new Weight(Weight.Unit.GRAM, 1000.0);
+        Weight kilogram = new Weight(Weight.Unit.KILOGRAM, 1.0);
+        boolean compareCheck = gram.compare(kilogram);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
+    @Test
+    public void given1TonneAnd1000Kgs_WhenCompared_ThenShouldReturnEqual() {
+        Weight tonne = new Weight(Weight.Unit.TONNE, 1.0);
+        Weight kilogram = new Weight(Weight.Unit.KILOGRAM, 1000.0);
+        boolean compareCheck = tonne.compare(kilogram);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
+    @Test
+    public void given1000KgsAnd1Tonne_WhenCompared_ThenShouldReturnEqual() {
+        Weight kilogram = new Weight(Weight.Unit.KILOGRAM, 1000.0);
+        Weight tonne = new Weight(Weight.Unit.TONNE, 1.0);
+        boolean compareCheck = tonne.compare(kilogram);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
+    @Test
+    public void given1TonneAnd1000Gram_WhenAdded_ThenShouldReturnValue() {
+        Weight tonne = new Weight(Weight.Unit.TONNE, 1.0);
+        Weight gram = new Weight(Weight.Unit.GRAM, 1000.0);
+        Weight expectedSum = new Weight(Weight.Unit.KILOGRAM, 1001.0);
+        Weight actualSum = tonne.finalWeightOfSum(gram);
+        Assertions.assertEquals(expectedSum, actualSum);
+    }
 }
 
 
