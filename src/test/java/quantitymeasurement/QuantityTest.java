@@ -390,6 +390,15 @@ public class QuantityTest {
         Weight actualSum = tonne.finalWeightOfSum(gram);
         Assertions.assertEquals(expectedSum, actualSum);
     }
+
+    @Test
+    public void givenHalfTonneAnd500Gram_WhenAdded_ThenShouldReturnValue() {
+        Weight tonne = new Weight(Weight.Unit.TONNE, .50);
+        Weight gram = new Weight(Weight.Unit.GRAM, 500.0);
+        Weight expectedSum = new Weight(Weight.Unit.KILOGRAM, 500.50);
+        Weight actualSum = tonne.finalWeightOfSum(gram);
+        Assertions.assertEquals(expectedSum, actualSum);
+    }
 }
 
 
