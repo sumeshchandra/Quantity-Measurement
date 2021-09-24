@@ -2,8 +2,8 @@ package quantitymeasurement;
 
 public class Length {
 
-    private static final double FEET_TO_INCH = 12.0;
     private static final double FEET_TO_YARD = 3.0;
+    private static final double FEET_TO_INCH = 12.0;
     private static final double YARD_TO_INCH = 36.0;
     private static final double INCH_TO_CM = 2.5;
 
@@ -59,6 +59,7 @@ public class Length {
 
         return false;
     }
+
 
     @Override
     public boolean equals(Object o) {

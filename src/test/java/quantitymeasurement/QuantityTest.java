@@ -194,14 +194,125 @@ public class QuantityTest {
     }
 
     @Test
-    public void given2InchAnd5Cm_WhenCompared_SThenShouldBeEqual() {
+    public void given2InchAnd5Cm_WhenCompared_ThenShouldBeEqual() {
         Length inch = new Length(Length.Unit.INCH, 2.0);
         Length cm = new Length(Length.Unit.CENTIMETER, 5.0);
         boolean compareCheck = inch.compare(cm);
         Assertions.assertTrue(compareCheck, "True");
     }
+    // Volume
 
+    @Test
+    public void givenZeroGallonAndZeroGallon_ThenShouldBeEqual() {
+        Volume gallon1 = new Volume(Volume.Unit.GALLON, 0.0);
+        Volume gallon2 = new Volume(Volume.Unit.GALLON, 0.0);
+        boolean compareCheck = gallon1.compare(gallon2);
+        Assertions.assertTrue(compareCheck, "True");
+    }
 
+    @Test
+    public void givenZeroGallonandOneGallon_ThenShouldNotBeEqual() {
+        Volume gallon1 = new Volume(Volume.Unit.GALLON, 0.0);
+        Volume gallon2 = new Volume(Volume.Unit.GALLON, 1.0);
+        boolean compareCheck = gallon1.compare(gallon2);
+        Assertions.assertNotEquals(compareCheck, "False");
+    }
+
+    @Test
+    public void givenZeroGallonAndNull_ThenShouldNotBeEqual() {
+        Volume gallon1 = new Volume(Volume.Unit.GALLON, 0.0);
+        Volume gallon2 = null;
+        Assertions.assertNotEquals(gallon1, gallon2);
+    }
+
+    //LITRE
+
+    @Test
+    public void givenZeroLitreAndZeroLitre_ThenShouldBeEqual() {
+        Volume litre1 = new Volume(Volume.Unit.LITRE,0.0);
+        Volume litre2 = new Volume(Volume.Unit.LITRE,0.0);
+        Assertions.assertEquals(litre1, litre2);
+    }
+
+    @Test
+    public void givenZeroLitreAndOneLitre_ThenShouldNotBeEqual() {
+        Volume litre1 = new Volume(Volume.Unit.LITRE,0.0);
+        Volume litre2 = new Volume(Volume.Unit.LITRE,1.0);
+        Assertions.assertNotEquals(litre1, litre2);
+    }
+
+    @Test
+    public void givenZeroLitreAndNull_ThenShouldNotBeEqual() {
+        Volume litre1 = new Volume(Volume.Unit.LITRE,0.0);
+        Volume litre2 = null;
+        Assertions.assertNotEquals(litre1, null);
+    }
+
+    @Test
+    void givenZeroGallonAndZeroLitre_WhenCompared_ThenShouldBeEqual() {
+        Volume gallon = new Volume(Volume.Unit.GALLON, 0.0);
+        Volume litre = new Volume(Volume.Unit.LITRE, 0.0);
+        boolean compareCheck = gallon.compare(litre);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
+    @Test
+    void givenZeroGallonAndOneLitre_WhenCompared_ThenShouldNotBeEqual() {
+        Volume gallon = new Volume(Volume.Unit.GALLON, 0.0);
+        Volume litre = new Volume(Volume.Unit.LITRE, 1.0);
+        boolean compareCheck = gallon.compare(litre);
+        Assertions.assertFalse(compareCheck, "False");
+    }
+
+    @Test
+    void givenOneGallonAndValueLitre_WhenCompared_ThenShouldBeEqual() {
+        Volume gallon = new Volume(Volume.Unit.GALLON, 1.0);
+        Volume litre = new Volume(Volume.Unit.LITRE, 3.78);
+        boolean compareCheck = gallon.compare(litre);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
+    @Test
+    public void given0LiterAnd0MilliLitre_WhenCompared_ThenShouldNotBeEqual() {
+        Volume litre = new Volume(Volume.Unit.LITRE, 0.0);
+        Volume ml = new Volume(Volume.Unit.MILLI_LITRE, 0.0);
+        boolean compareCheck = litre.compare(ml);
+        Assertions.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given1LiterAnd1000MilliLitre_WhenCompared_ThenShouldBeEqual() {
+        Volume litre = new Volume(Volume.Unit.LITRE, 1.0);
+        Volume ml = new Volume(Volume.Unit.MILLI_LITRE, 1000.0);
+        boolean compareCheck = litre.compare(ml);
+        Assertions.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given1000MilliLitreAnd1Litre_WhenCompared_ThenShouldBeEqual() {
+        Volume millilitre1 = new Volume(Volume.Unit.MILLI_LITRE, 1000.0);
+        Volume litre1 = new Volume(Volume.Unit.LITRE, 1.0);
+        boolean compareCheck = millilitre1.compare(litre1);
+        Assertions.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given1GallonAnd3point78Litre_WhenAdded_ThenShouldReturnValue() {
+        Volume gallon = new Volume(Volume.Unit.GALLON, 1.0);
+        Volume litre = new Volume(Volume.Unit.LITRE, 3.78);
+        Volume expected = new Volume(Volume.Unit.LITRE, 7.56);
+        Volume actual = gallon.volumeSum(litre);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void given1LitreAnd1000ML_WhenAdded_ThenShouldReturnValue() {
+        Volume litre1 = new Volume(Volume.Unit.LITRE, 1.0);
+        Volume millilitre1 = new Volume(Volume.Unit.MILLI_LITRE, 1000.0);
+        Volume expected = new Volume(Volume.Unit.LITRE, 2.0);
+        Volume actual = litre1.volumeSum(millilitre1);
+        Assertions.assertEquals(expected, actual);
+    }
 }
 
 
