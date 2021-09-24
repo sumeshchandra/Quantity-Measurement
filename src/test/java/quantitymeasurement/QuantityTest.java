@@ -127,25 +127,29 @@ public class QuantityTest {
 
 
     @Test
-    public void givenZeroYardAndZeroYard_ThenShouldBeEqual() {      // Yard
-        Yard yard1 = new Yard(0.0);
-        Yard yard2 = new Yard(0.0);
-        Assertions.assertEquals(yard1, yard2);
+    public void givenZeroYardAndZeroYard_WhenCompared_ThenShouldBeEqual() {      // Yard
+        Length yard1 = new Length(Length.Unit.YARD, 0.0);
+        Length yard2 = new Length(Length.Unit.YARD, 0.0);
+        boolean compareCheck = yard1.compare(yard2);
+        Assertions.assertTrue(compareCheck, "True");
     }
 
     @Test
     public void givenZeroYardAndOneYard_ThenShouldNotBeEqual() {
-        Yard yard1 = new Yard(0.0);
-        Yard yard2 = new Yard(1.0);
-        Assertions.assertNotEquals(yard1, yard2);
+        Length yard1 = new Length(Length.Unit.YARD, 0.0);
+        Length yard2 = new Length(Length.Unit.YARD, 1.0);
+        boolean compareCheck = yard1.compare(yard2);
+        Assertions.assertFalse(compareCheck, "False");
     }
 
     @Test
     public void givenZeroYardAndNull_ThenShouldBeNotEqual() {
-        Yard yard1 = new Yard(0);
-        Yard yard2 = null;
-        Assertions.assertNotEquals(yard1, null);
+        Length yard1 = new Length(Length.Unit.YARD, 0.0);
+        Length yard2 = null;
+        Assertions.assertNotEquals(yard1, yard2);
+
     }
+
 
     @Test
     public void givenThreeFeetEqualsOneYard_WhenCompared_ThenShouldBeEqual() {
@@ -170,6 +174,33 @@ public class QuantityTest {
         boolean compareCheck = yard.compare(inch);
         Assertions.assertTrue(compareCheck, "true");
     }
+
+    // Centimeter
+
+    @Test
+    public void given0CmAnd0Cm_WhenCompared_ThenShouldBeEqual() {
+        Length cm1 = new Length(Length.Unit.CENTIMETER, 0.0);
+        Length cm2 = new Length(Length.Unit.CENTIMETER, 0.0);
+        boolean compareCheck = cm1.compare(cm2);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
+    @Test
+    public void given0CmAnd1Cm_WhenCompared_ThenShouldBeEqual() {
+        Length cm1 = new Length(Length.Unit.CENTIMETER, 0.0);
+        Length cm2 = new Length(Length.Unit.CENTIMETER, 1.0);
+        boolean compareCheck = cm1.compare(cm2);
+        Assertions.assertFalse(compareCheck);
+    }
+
+    @Test
+    public void given2InchAnd5Cm_WhenCompared_SThenShouldBeEqual() {
+        Length inch = new Length(Length.Unit.INCH, 2.0);
+        Length cm = new Length(Length.Unit.CENTIMETER, 5.0);
+        boolean compareCheck = inch.compare(cm);
+        Assertions.assertTrue(compareCheck, "True");
+    }
+
 
 }
 
